@@ -13,8 +13,10 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Check out repository code
+    - name: Check out action repo
       uses: actions/checkout@main
+      with:
+        repository: joshinagesh/PowerShell-Action-Demo
     - name: Get Lookup Table Value
       shell: pwsh
       run: ./Get-LookupTableOutput.ps1 -TableName "Subscription" -Query "" -Column "SubscriptionId"

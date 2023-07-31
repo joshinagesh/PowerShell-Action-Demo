@@ -19,4 +19,4 @@ runs:
     - uses: joshinagesh/PowerShell-Action-Demo@main
     - name: Get Lookup Table Value
       shell: pwsh
-      run: ./Actions/Get-LookupTableOutput/Get-LookupTableOutput.ps1 -TableName "Subscription" -Query "" -Column "SubscriptionId"
+      run: ./Get-LookupTableOutput.ps1 -TableName "Subscription" -Query "" -Column "SubscriptionId"

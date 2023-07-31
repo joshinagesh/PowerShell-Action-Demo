@@ -16,6 +16,8 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Check out repository code
+      uses: actions/checkout@v3
     - name: Get Lookup Table Value
       shell: pwsh
       run: ./Get-LookupTableOutput.ps1 -TableName "Subscription" -Query "" -Column "SubscriptionId"

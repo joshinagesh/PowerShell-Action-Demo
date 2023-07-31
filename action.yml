@@ -16,7 +16,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: joshinagesh/PowerShell-Action-Demo@main
     - name: Get Lookup Table Value
       shell: pwsh
       run: ./Get-LookupTableOutput.ps1 -TableName "Subscription" -Query "" -Column "SubscriptionId"

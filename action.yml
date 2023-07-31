@@ -20,4 +20,4 @@ runs:
       uses: actions/checkout@v3
     - name: Get Lookup Table Value
       shell: pwsh
-      run: ./Get-LookupTableOutput.ps1 -TableName "Subscription" -Query "" -Column "SubscriptionId"
+      run: Actions/Get-LookupTableOutput.ps1 -TableName "Subscription" -Query "" -Column "SubscriptionId"

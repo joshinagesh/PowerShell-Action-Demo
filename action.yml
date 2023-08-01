@@ -4,12 +4,15 @@ inputs:
   TableName:
     description: "Name of the lookup table"
     required: true
+    default: "Business"
   Query:
     description: "Lookup table query"
     required: false
+    default: ""
   Column:
     description: "Name of the column"
     required: false
+    default: "BusinessName"
 runs:
   using: "composite"
   steps:
@@ -19,4 +22,4 @@ runs:
         repository: joshinagesh/PowerShell-Action-Demo
     - name: Get Lookup Table Value
       shell: pwsh
-      run: ./Get-LookupTableOutput.ps1 -TableName "Subscription" -Query "" -Column "SubscriptionId"
+      run: ./Get-LookupTableOutput.ps1 -TableName ${{ inputs.TableName }} -Query ${{ inputs.Query }} -Column ${{ inputs.Column }}

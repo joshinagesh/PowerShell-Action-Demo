@@ -11,4 +11,4 @@ $TableName
 $Query
 $Column
 
-Write-Output "LookupValue=SHELL01" >> $env:GITHUB_OUTPUT
+echo "LookupValue=SHELL01" >> $env:GITHUB_OUTPUT

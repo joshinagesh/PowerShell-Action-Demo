@@ -4,6 +4,7 @@ param(
     [string] $Column
 )
 
+echo "::set-output name=LookupValue::$TableName"
 echo "LookupValue=SHELL01" >> $GITHUB_OUTPUT
 Write-Host "TableName: $($TableName)"
 Write-Host "Query: $($Query)"

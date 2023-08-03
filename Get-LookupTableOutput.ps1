@@ -1,9 +1,14 @@
 param(
     [string] $TableName,
     [string] $Query,
-    [string] $Column
+    [string] $Column,
+    [object] $Context
 )
 
+$env:GITHUB_ENV
+$env:GITHUB_ACTION_PATH
+
+$Context
 $repo = $env:github.action_repository
 $repo
 

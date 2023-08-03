@@ -2,11 +2,14 @@ param(
     [string] $TableName,
     [string] $Query,
     [string] $Column,
-    [object] $Context
+    [string] $Context
 )
 
 $env:GITHUB_ENV
 $env:GITHUB_ACTION_PATH
+$env:GITHUB_REPOSITORY
+$env:GITHUB_RUN_ID
+$env:GITHUB_JOB
 
 $Context
 $repo = $env:github.action_repository

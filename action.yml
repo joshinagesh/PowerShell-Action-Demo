@@ -23,9 +23,11 @@ runs:
       uses: actions/checkout@main
       with:
         repository: joshinagesh/PowerShell-Action-Demo
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
     - name: Get Lookup Table Value
       id: fetch-lookup-value
       shell: pwsh
-      run: ./Get-LookupTableOutput.ps1 -TableName ${{ inputs.TableName }} -Query ${{ inputs.Query }} -Column ${{ inputs.Column }} -Context {{github}}
+      run: ./Get-LookupTableOutput.ps1 -TableName ${{ inputs.TableName }} -Query ${{ inputs.Query }} -Column ${{ inputs.Column }} -Context {{GITHUB_CONTEXT}}
     - run: echo "${{ steps.fetch-lookup-value.outputs.LookupValue }}"
       shell: bash

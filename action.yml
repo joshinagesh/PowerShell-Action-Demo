@@ -27,9 +27,9 @@ runs:
       id: fetch-lookup-value
       shell: pwsh
       env:
-        TenantId: ${{ secrets.TenantId }}
-        ClientId: ${{ secrets.ClientId }}
-        ClientSecret: ${{ secrets.ClientSecret }}
+        TenantId: '${{ secrets.TenantId }}'
+        ClientId: '${{ secrets.ClientId }}'
+        ClientSecret: '${{ secrets.ClientSecret }}'
       run: ./Get-LookupTableOutput.ps1 -TableName ${{ inputs.TableName }} -Query ${{ inputs.Query }} -Column ${{ inputs.Column }}
     - run: echo "${{ steps.fetch-lookup-value.outputs.LookupValue }}"
       shell: bash

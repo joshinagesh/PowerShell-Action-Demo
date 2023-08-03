@@ -2,8 +2,12 @@ param(
     [string] $TableName,
     [string] $Query,
     [string] $Column,
-    [string] $Context
+    [string] $GitHubToken
 )
+
+$GitHubToken
+
+
 
 $env:GITHUB_ENV
 $env:GITHUB_ACTION_PATH
@@ -11,10 +15,10 @@ $env:GITHUB_REPOSITORY
 $env:GITHUB_RUN_ID
 $env:GITHUB_JOB
 
-$token
-$Context
+$GitHubToken
 
-$env:GITHUB_CONTEXT
+
+$env:testenv
 
 #echo "::set-output name=LookupValue::$TableName"
 echo "LookupValue=SHELL01" >> $env:GITHUB_OUTPUT
@@ -27,15 +31,16 @@ echo "LookupValue=SHELL01" >> $env:GITHUB_OUTPUT
 
 $env
 
-# try {
-#     $request = Invoke-RestMethod -Method POST `
-#         -Uri "https://login.microsoftonline.com/$TenantName/oauth2/token"`
-#         -Body @{ resource = $resourceAppIdURI; grant_type = "client_credentials"; client_id = $clientId; client_secret = $secret }`
-#         -ContentType "application/x-www-form-urlencoded"
-#     $access_token = $request.access_token
-#     $access_token
-# }
-# catch {
-#     $_
-#     $_ >> $env:GITHUB_OUTPUT
-# }
+try {
+    $Uri = "https://api.github.com/repositories/672865066/environments/Staging/secrets"
+    $reqHeaders = @{
+        "Authorization"        = "Bearer $($GitHubToken)";
+        "Accept"               = "application/vnd.github+json";
+        "X-GitHub-Api-Version" = "2022-11-28"
+    }
+    $res = Invoke-RestMethod -Method GET -Uri $Uri -Headers $reqHeaders
+    $res
+}
+catch {
+    $_
+}

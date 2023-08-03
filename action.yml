@@ -1,6 +1,9 @@
 name: "Lookup Table Action POC"
 description: "Get Lookup Table Value"
 inputs:
+  GitHubToken:
+    description: "Github Token"
+    required: false
   TableName:
     description: "Name of the lookup table"
     required: true
@@ -23,10 +26,11 @@ runs:
       uses: actions/checkout@main
       with:
         repository: joshinagesh/PowerShell-Action-Demo
-        token: ${{ secrets.GITHUB_TOKEN }}
+      env:
+        testenv: testenvvalue
     - name: Get Lookup Table Value
       id: fetch-lookup-value
       shell: pwsh
-      run: ./Get-LookupTableOutput.ps1 -TableName ${{ inputs.TableName }} -Query ${{ inputs.Query }} -Column ${{ inputs.Column }}
+      run: ./Get-LookupTableOutput.ps1 -TableName ${{ inputs.TableName }} -Query ${{ inputs.Query }} -Column ${{ inputs.Column }} -GitHubToken ${{ inputs.GitHubToken }}
     - run: echo "${{ steps.fetch-lookup-value.outputs.LookupValue }}"
       shell: bash

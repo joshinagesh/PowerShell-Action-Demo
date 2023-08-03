@@ -23,8 +23,7 @@ runs:
       uses: actions/checkout@main
       with:
         repository: joshinagesh/PowerShell-Action-Demo
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
+        token: ${{ secrets.GITHUB_TOKEN }}
     - name: Get Lookup Table Value
       id: fetch-lookup-value
       shell: pwsh

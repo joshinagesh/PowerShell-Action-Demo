@@ -6,6 +6,8 @@ param(
 
 $TenantId
 $env.TenantId
+$secrets.TenantId
+
 $ClientId
 $ClientSecret
 #echo "::set-output name=LookupValue::$TableName"

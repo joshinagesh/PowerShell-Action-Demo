@@ -4,7 +4,7 @@ param(
     [string] $Column
 )
 
-$repo = { { github.action_repository } }
+$repo = $env:github.action_repository
 $repo
 
 #echo "::set-output name=LookupValue::$TableName"

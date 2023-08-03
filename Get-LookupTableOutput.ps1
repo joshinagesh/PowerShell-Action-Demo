@@ -13,7 +13,7 @@ $env:GITHUB_JOB
 
 $Context
 
-$env:job
+$env:GITHUB_CONTEXT
 
 #echo "::set-output name=LookupValue::$TableName"
 echo "LookupValue=SHELL01" >> $env:GITHUB_OUTPUT

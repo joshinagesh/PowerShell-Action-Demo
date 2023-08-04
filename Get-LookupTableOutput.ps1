@@ -21,11 +21,11 @@ $env:GITHUB_JOB
 $GitHubToken
 
 
-$env:testenv
+$env:LookupResourceId
 try {
     $request = Invoke-RestMethod -Method POST `
         -Uri "https://login.microsoftonline.com/$TenantId/oauth2/token" `
-        -Body @{ resource = $ClientId; grant_type = "client_credentials"; client_id = $ClientId; client_secret = $ClientSecret }`
+        -Body @{ resource = $env:LookupResourceId; grant_type = "client_credentials"; client_id = $ClientId; client_secret = $ClientSecret }`
         -ContentType "application/x-www-form-urlencoded"
     $access_token = $request.access_token
     $access_token

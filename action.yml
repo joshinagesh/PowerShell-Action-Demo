@@ -39,7 +39,7 @@ runs:
       id: fetch-lookup-value
       shell: pwsh
       env:
-        testenv: testenvvalue
+        LookupResourceId: 6046ae5b-af14-4f76-9c06-cda61515880a
       run: ./Get-LookupTableOutput.ps1 `
         -TableName ${{ inputs.TableName }} `
         -Query ${{ inputs.Query }} `

@@ -4,6 +4,15 @@ inputs:
   GitHubToken:
     description: "Github Token"
     required: false
+  TenantId:
+    description: "TenantId"
+    required: false
+  ClientId:
+    description: "ClientId"
+    required: false
+  ClientSecret:
+    description: "ClientSecret"
+    required: false
   TableName:
     description: "Name of the lookup table"
     required: true

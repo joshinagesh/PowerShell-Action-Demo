@@ -37,7 +37,7 @@ catch {
 
 
 try {
-    $Uri = "https://staging-dna-lkup-api.azurewebsites.net/api/Lookup/$lookupTableName"
+    $Uri = "https://staging-dna-lkup-api.azurewebsites.net/api/Lookup/$TableName"
     $reqHeaders = @{
         "Authorization" = "Bearer $($access_token)";
         "Accept"        = "application/json";

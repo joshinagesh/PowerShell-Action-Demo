@@ -2,7 +2,10 @@ param(
     [string] $TableName,
     [string] $Query,
     [string] $Column,
-    [string] $GitHubToken
+    [string] $GitHubToken,
+    [string] $TenantId,
+    [string] $ClientId,
+    [string] $ClientSecret
 )
 
 $GitHubToken
@@ -19,6 +22,36 @@ $GitHubToken
 
 
 $env:testenv
+try {
+    $request = Invoke-RestMethod -Method POST `
+        -Uri "https://login.microsoftonline.com/$TenantId/oauth2/token" `
+        -Body @{ resource = $ClientId; grant_type = "client_credentials"; client_id = $ClientId; client_secret = $ClientSecret }`
+        -ContentType "application/x-www-form-urlencoded"
+    $access_token = $request.access_token
+    $access_token
+}
+catch {
+    $_
+}
+
+
+
+try {
+    $Uri = "https://staging-dna-lkup-api.azurewebsites.net/api/Lookup/$lookupTableName"
+    $reqHeaders = @{
+        "Authorization" = "Bearer $($access_token)";
+        "Accept"        = "application/json";
+    }
+    $res = Invoke-RestMethod -Method GET -Uri $Uri -Headers $reqHeaders
+    $res
+    $propValue = "$res.$Column"
+    $propValue
+}
+catch {
+    $_
+}
+
+
 
 #echo "::set-output name=LookupValue::$TableName"
 echo "LookupValue=SHELL01" >> $env:GITHUB_OUTPUT

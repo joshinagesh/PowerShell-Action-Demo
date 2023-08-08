@@ -50,8 +50,6 @@ try {
     $res = Invoke-RestMethod -Method GET -Uri $Uri -Headers $reqHeaders
     $LkupValue = $res | ConvertTo-Json
     $LkupValue
-    $LkupValue.ShortCode
-    $LkupValue.$Column
     $resObj = $LkupValue | ConvertFrom-Json
     $resObj
     $propValue = $resObj.$Column
@@ -66,7 +64,7 @@ catch {
 
 
 #echo "::set-output name=LookupValue::$TableName"
-echo "LookupValue=SHELL01" >> $env:GITHUB_OUTPUT
+#echo "LookupValue=SHELL01" >> $env:GITHUB_OUTPUT
 # Write-Host "TableName: $($TableName)"
 # Write-Host "Query: $($Query)"
 # Write-Host "ColumnName: $($Column)"

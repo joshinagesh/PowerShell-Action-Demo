@@ -49,7 +49,9 @@ try {
     $body
     $res = Invoke-RestMethod -Method GET -Uri $Uri -Headers $reqHeaders
     $res
-    $propValue = "$res.$Column"
+    $resObj = $res | ConvertFrom-Json
+    $resObj
+    $propValue = $resObj.$Column
     $propValue
 
     echo "LookupValue=$propValue" >> $env:GITHUB_OUTPUT

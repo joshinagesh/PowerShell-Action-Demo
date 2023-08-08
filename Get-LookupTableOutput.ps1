@@ -10,7 +10,9 @@ param(
 
 $GitHubToken
 
-
+$LookupTable
+$Column
+$Query
 
 $env:GITHUB_ENV
 $env:GITHUB_ACTION_PATH
@@ -37,15 +39,20 @@ catch {
 
 
 try {
-    $Uri = "https://staging-dna-lkup-api.azurewebsites.net/api/Lookup/$TableName"
+    $Uri = "https://staging-dna-lkup-api.azurewebsites.net/api/Lookup/odata/$TableName?`$filter=$Query"
+    $Uri
     $reqHeaders = @{
         "Authorization" = "Bearer $($access_token)";
         "Accept"        = "application/json";
     }
+
+    $body
     $res = Invoke-RestMethod -Method GET -Uri $Uri -Headers $reqHeaders
     $res
     $propValue = "$res.$Column"
     $propValue
+
+    echo "LookupValue=$propValue" >> $env:GITHUB_OUTPUT
 }
 catch {
     $_

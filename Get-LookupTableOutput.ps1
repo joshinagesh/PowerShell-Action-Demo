@@ -50,8 +50,9 @@ try {
     $res = Invoke-RestMethod -Method GET -Uri $Uri -Headers $reqHeaders
     $LkupValue = $res | ConvertTo-Json
     $LkupValue
+    $LkupValue.ShortCode
     $LkupValue.$Column
-    $resObj = $res | ConvertFrom-Json
+    $resObj = $LkupValue | ConvertFrom-Json
     $resObj
     $propValue = $resObj.$Column
     $propValue

@@ -5,7 +5,8 @@ param(
     [string] $GitHubToken,
     [string] $TenantId,
     [string] $ClientId,
-    [string] $ClientSecret
+    [string] $ClientSecret,
+    [string] $LookupServiceIdentifier
 )
 
 $GitHubToken

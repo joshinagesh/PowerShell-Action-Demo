@@ -10,7 +10,7 @@ param(
 
 $GitHubToken
 
-$LookupTable
+$TableName
 $Column
 $Query
 
@@ -39,7 +39,7 @@ catch {
 
 
 try {
-    $Uri = "https://staging-dna-lkup-api.azurewebsites.net/api/Lookup/odata/$TableName?`$filter=$Query"
+    $Uri = "https://staging-dna-lkup-api.azurewebsites.net/api/Lookup/odata/$($TableName)?`$filter=$Query"
     $Uri
     $reqHeaders = @{
         "Authorization" = "Bearer $($access_token)";

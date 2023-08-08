@@ -41,7 +41,7 @@ runs:
       shell: pwsh
       env:
         LookupResourceId: 6046ae5b-af14-4f76-9c06-cda61515880a
-      run: ${{ github.action_path }}/Actions/Get-LookupTableOutput.ps1 `
+      run: ${{ github.action_path }}/Actions/Get-LookupTableOutput/Get-LookupTableOutput.ps1 `
         -TableName ${{ inputs.TableName }} `
         -Query ${{ inputs.Query }} `
         -Column ${{ inputs.Column }} `

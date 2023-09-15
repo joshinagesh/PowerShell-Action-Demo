@@ -53,7 +53,7 @@ runs:
         -TenantId ${{ inputs.TenantId }} `
         -ClientId ${{ inputs.ClientId }} `
         -ClientSecret ${{ inputs.ClientSecret }}
-    - run: echo "${{ steps.fetch-lookup-value.outputs.LookupRowObj }}"
+    - run: echo "${{fromJson( steps.fetch-lookup-value.outputs.LookupRowObj) }}"
       shell: bash
-    - run: echo "${{ steps.fetch-lookup-value.outputs.LookupValueJSON }}"
+    - run: echo "${{fromJson(steps.fetch-lookup-value.outputs.LookupValueJSON)}}"
       shell: bash

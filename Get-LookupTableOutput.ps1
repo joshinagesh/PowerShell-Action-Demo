@@ -49,6 +49,7 @@ try {
 
     $body
     $res = Invoke-RestMethod -Method GET -Uri $Uri -Headers $reqHeaders
+    $res
     $LkupValue = $res | ConvertTo-Json
     $LkupValue
     $resObj = $LkupValue | ConvertFrom-Json

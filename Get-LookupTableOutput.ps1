@@ -57,8 +57,16 @@ try {
     $propValue = $resObj.$Column
     $propValue
 
-    echo "LookupValueJSON=$LkupValue" >> $env:GITHUB_OUTPUT
+    #echo "LookupValueJSON=$LkupValue" >> $env:GITHUB_OUTPUT
     echo "LookupRowObj=$resObj" >> $env:GITHUB_OUTPUT
+
+    $LkupValue = @{
+        'ResourceType'      = 'SQL Server'
+        'AzureResourceType' = '"Microsoft.SqlServer'
+        'ShortCode'         = 'sq'
+    }
+
+    echo "LookupValueJSON=$LkupValue" >> $env:GITHUB_OUTPUT
 }
 catch {
     $_

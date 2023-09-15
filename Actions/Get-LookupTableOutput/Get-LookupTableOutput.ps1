@@ -75,16 +75,16 @@ catch {
 
 $env
 
-try {
-    $Uri = "https://api.github.com/repositories/672865066/environments/Staging/secrets"
-    $reqHeaders = @{
-        "Authorization"        = "Bearer $($GitHubToken)";
-        "Accept"               = "application/vnd.github+json";
-        "X-GitHub-Api-Version" = "2022-11-28"
-    }
-    $res = Invoke-RestMethod -Method GET -Uri $Uri -Headers $reqHeaders
-    $res
-}
-catch {
-    $_
-}
+# try {
+#     $Uri = "https://api.github.com/repositories/672865066/environments/Staging/secrets"
+#     $reqHeaders = @{
+#         "Authorization"        = "Bearer $($GitHubToken)";
+#         "Accept"               = "application/vnd.github+json";
+#         "X-GitHub-Api-Version" = "2022-11-28"
+#     }
+#     $res = Invoke-RestMethod -Method GET -Uri $Uri -Headers $reqHeaders
+#     $res
+# }
+# catch {
+#     $_
+# }

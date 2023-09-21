@@ -52,5 +52,5 @@ runs:
         -ClientSecret ${{ inputs.ClientSecret }}
     # - run: echo "${{env.LookupValueJSONEnv.ResourceType }}"
     #   shell: bash
-    - run: echo "${{fromJson( steps.fetch-lookup-value.outputs.LookupValueJSON.ResourceType) }}"
+    - run: echo "${{fromJson( steps.fetch-lookup-value.outputs.LookupValueJSON) }}"
       shell: bash

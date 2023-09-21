@@ -45,12 +45,13 @@ try {
         "Environment"  = "Production"
     }
 
-    $LookupJson = $lookupObj | ConvertTo-Json
+    $LookupJson = $lookupObj | ConvertTo-Json -Compress
 
     $LookupJson
     
-    #Write-Output "LookupValueJSONEnv=$($LookupJson) << EOF" >> $env:GITHUB_ENV
     Write-Output "LookupValueJSON=$LookupJson" >> "$env:GITHUB_OUTPUT"
+
+    $env:GITHUB_OUTPUT
 }
 catch {
     $_

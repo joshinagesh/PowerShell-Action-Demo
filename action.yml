@@ -28,7 +28,7 @@ inputs:
 outputs:
   LookupTableValueJSON:
     description: "Lookup Value"
-    value: ${{ steps.fetch-lookup-value.outputs.LookupValueJSON }}
+    value: ${{ steps.fetch-lookup-value.outputs.LookupValue }}
 runs:
   using: "composite"
   steps:

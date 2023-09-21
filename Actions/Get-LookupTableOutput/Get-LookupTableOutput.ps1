@@ -39,9 +39,9 @@ catch {
 
 try {
     $lookupObj = @{
-        "ResourceType" = "SQL Server";
-        "ShortCode"    = "sql";
-        "Business"     = "Enterprise";
+        "ResourceType" = "SQL Server"
+        "ShortCode"    = "sql"
+        "Business"     = "Enterprise"
         "Environment"  = "Production"
     }
 

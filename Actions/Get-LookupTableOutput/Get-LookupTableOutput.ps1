@@ -15,14 +15,6 @@ $TableName
 $Column
 $Query
 
-$env:GITHUB_ENV
-$env:GITHUB_ACTION_PATH
-$env:GITHUB_REPOSITORY
-$env:GITHUB_RUN_ID
-$env:GITHUB_JOB
-
-$GitHubToken
-
 
 $env:LookupResourceId
 try {
@@ -37,50 +29,48 @@ catch {
     $_
 }
 
+# try {
+#     $lookupObj = @{
+#         "ResourceType" = "SQL Server"
+#         "ShortCode"    = "sql"
+#         "Business"     = "Enterprise"
+#         "Environment"  = "Production"
+#     }
+
+#     $LookupJson = $lookupObj | ConvertTo-Json -Compress
+
+#     $LookupJson
+    
+#     Write-Output "LookupValueJSON=$LookupJson" >> "$env:GITHUB_OUTPUT"
+
+#     $env:GITHUB_OUTPUT
+# }
+# catch {
+#     $_
+# }
+
+
+
 try {
-    $lookupObj = @{
-        "ResourceType" = "SQL Server"
-        "ShortCode"    = "sql"
-        "Business"     = "Enterprise"
-        "Environment"  = "Production"
+    $Uri = "https://staging-dna-lkup-api.azurewebsites.net/api/Lookup/odata/$($TableName)?`$filter=$Query"
+    $Uri
+    $reqHeaders = @{
+        "Authorization" = "Bearer $($access_token)";
+        "Accept"        = "application/json";
     }
 
-    $LookupJson = $lookupObj | ConvertTo-Json -Compress
+    $body
+    $res = Invoke-RestMethod -Method GET -Uri $Uri -Headers $reqHeaders
+    $LkupValue = $res | ConvertTo-Json -Compress
+    $LkupValue
 
-    $LookupJson
-    
-    Write-Output "LookupValueJSON=$LookupJson" >> "$env:GITHUB_OUTPUT"
+    Write-Output "LookupValue=$LkupValue" >> $env:GITHUB_OUTPUT
 
     $env:GITHUB_OUTPUT
 }
 catch {
     $_
 }
-
-
-
-# try {
-#     $Uri = "https://staging-dna-lkup-api.azurewebsites.net/api/Lookup/odata/$($TableName)?`$filter=$Query"
-#     $Uri
-#     $reqHeaders = @{
-#         "Authorization" = "Bearer $($access_token)";
-#         "Accept"        = "application/json";
-#     }
-
-#     $body
-#     $res = Invoke-RestMethod -Method GET -Uri $Uri -Headers $reqHeaders
-#     $LkupValue = $res | ConvertTo-Json
-#     $LkupValue
-#     $resObj = $LkupValue | ConvertFrom-Json
-#     $resObj
-#     $propValue = $resObj.$Column
-#     $propValue
-
-#     echo "LookupValue=$propValue" >> $env:GITHUB_OUTPUT
-# }
-# catch {
-#     $_
-# }
 
 
 

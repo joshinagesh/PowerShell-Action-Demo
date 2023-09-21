@@ -29,9 +29,6 @@ outputs:
   LookupTableValueJSON:
     description: "Lookup Value"
     value: ${{ steps.fetch-lookup-value.outputs.LookupValueJSON }}
-  LookupTableValue:
-    description: "Lookup Value"
-    value: ${{ steps.fetch-lookup-value.outputs.LookupRowObj }}
 runs:
   using: "composite"
   steps:
@@ -54,6 +51,4 @@ runs:
         -ClientId ${{ inputs.ClientId }} `
         -ClientSecret ${{ inputs.ClientSecret }}
     - run: echo "${{fromJson( steps.fetch-lookup-value.outputs.LookupValueJSON) }}"
-      shell: bash
-    - run: echo "${{fromJson(steps.fetch-lookup-value.outputs.LookupRowObj)}}"
       shell: bash

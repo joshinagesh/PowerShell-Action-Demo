@@ -37,30 +37,46 @@ catch {
     $_
 }
 
-
-
 try {
-    $Uri = "https://staging-dna-lkup-api.azurewebsites.net/api/Lookup/odata/$($TableName)?`$filter=$Query"
-    $Uri
-    $reqHeaders = @{
-        "Authorization" = "Bearer $($access_token)";
-        "Accept"        = "application/json";
+    $lookupObj = @{
+        "ResourceType" = "SQL Server";
+        "ShortCode"    = "sql";
+        "Business"     = "Enterprise";
+        "Environment"  = "Production"
     }
 
-    $body
-    $res = Invoke-RestMethod -Method GET -Uri $Uri -Headers $reqHeaders
-    $LkupValue = $res | ConvertTo-Json
-    $LkupValue
-    $resObj = $LkupValue | ConvertFrom-Json
-    $resObj
-    $propValue = $resObj.$Column
-    $propValue
+    $LookupJson = $lookupObj | ConvertTo-Json
 
-    echo "LookupValue=$propValue" >> $env:GITHUB_OUTPUT
+    echo "LookupValueJSON=$LookupJson" >> $env:GITHUB_OUTPUT
 }
 catch {
     $_
 }
+
+
+
+# try {
+#     $Uri = "https://staging-dna-lkup-api.azurewebsites.net/api/Lookup/odata/$($TableName)?`$filter=$Query"
+#     $Uri
+#     $reqHeaders = @{
+#         "Authorization" = "Bearer $($access_token)";
+#         "Accept"        = "application/json";
+#     }
+
+#     $body
+#     $res = Invoke-RestMethod -Method GET -Uri $Uri -Headers $reqHeaders
+#     $LkupValue = $res | ConvertTo-Json
+#     $LkupValue
+#     $resObj = $LkupValue | ConvertFrom-Json
+#     $resObj
+#     $propValue = $resObj.$Column
+#     $propValue
+
+#     echo "LookupValue=$propValue" >> $env:GITHUB_OUTPUT
+# }
+# catch {
+#     $_
+# }
 
 
 

@@ -46,8 +46,9 @@ try {
     }
 
     $LookupJson = $lookupObj | ConvertTo-Json
-
-    echo "LookupValueJSON=$LookupJson" >> $env:GITHUB_OUTPUT
+    
+    Write-Output "LookupValueJSONEnv=$($LookupJson)" >> $env:GITHUB_ENV
+    Write-Output "LookupValueJSON=$($LookupJson)" >> $env:GITHUB_OUTPUT
 }
 catch {
     $_
